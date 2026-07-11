@@ -26,12 +26,12 @@
 // Hardware / Pins
 // ==========================================
 // Standard ESP32 HardwareSerial 2 Pins
-#define DESK_RX_PIN 16 // Connect to Desk TX line
-#define DESK_TX_PIN 17 // Connect to Desk RX line
+#define DESK_RX_PIN 22 // Connect to Desk TX line
+#define DESK_TX_PIN 23 // Connect to Desk RX line
 #define DESK_BAUD_RATE 9600
 
-#define BUTTON_KB_PIN 34
-#define BUTTON_HS_PIN 35
+#define BUTTON_KB_PIN 25
+#define BUTTON_HS_PIN 27
 #define BUTTON_PRESS_DURATION_MS 250
 
 // Optional on-board LED status indicator
