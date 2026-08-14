@@ -97,6 +97,7 @@ class labOpsUsermod : public Usermod {
       initDone = true;
     }
     void connected() override {
+      Serial.println(Network.localIP());
       // WLED uses a bundled version of AsyncJson that requires manual parsing
       server.addHandler(new AsyncCallbackJsonWebHandler("/api/switch/toggle", [this](AsyncWebServerRequest *request) {
         if (request->_tempObject == NULL) {
