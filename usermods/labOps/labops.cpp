@@ -101,6 +101,15 @@ public:
     // Let's print the actual WLED Network IP
     Serial.print("WLED connected! IP: ");
     Serial.println(Network.localIP());
+    void connected() override {
+      Serial.println(Network.localIP());
+      // WLED uses a bundled version of AsyncJson that requires manual parsing
+      server.addHandler(new AsyncCallbackJsonWebHandler("/api/switch/toggle", [this](AsyncWebServerRequest *request) {
+        if (request->_tempObject == NULL) {
+          request->send(400, "application/json", "{\"error\":\"No body\"}");
+          Serial.println("No body");
+          return;
+        }
 
     // WLED uses a bundled version of AsyncJson that requires manual parsing
     server.addHandler(new AsyncCallbackJsonWebHandler(
