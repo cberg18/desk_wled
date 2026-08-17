@@ -4,6 +4,43 @@
 #include <Arduino.h>
 #include "my_config.h"
 
+// ==========================================
+// Hardware / Pins
+// ==========================================
+// Standard ESP32 HardwareSerial 2 Pins
+#define DESK_RX_PIN 22 // Connect to Desk TX line
+#define DESK_TX_PIN 23 // Connect to Desk RX line
+#define DESK_BAUD_RATE 9600
+
+#define BUTTON_KB_PIN 25
+#define BUTTON_HS_PIN 27
+#define BUTTON_PRESS_DURATION_MS 250
+
+// Optional on-board LED status indicator
+#define STATUS_LED_PIN 2 // Default blue LED on DevKit boards
+
+// ==========================================
+// Desk Controller Protocol Variant
+// ==========================================
+// Select your standing desk controller variant:
+// - "default" (e.g., Maidesite, Boho Office, Vari Desk - most common)
+// - "rocka"   (Rocka specific checksum style)
+// - "jarvis"  (Fully Jarvis / Jiecang motor steps style)
+#define DESK_VARIANT "default"
+
+// Wake Up Command: If enabled, sends a Stop (wake) command if desk has been
+// idle for more than 4 seconds prior to sending movement commands.
+#define WAKE_UP_BEFORE_MOVE true
+#define IDLE_WAKE_UP_THRESHOLD_SEC 4
+
+// Offsets in millimeters applied when commanding target heights (cm * 10)
+#define GO_UP_OFFSET_MM 0
+#define GO_DOWN_OFFSET_MM 0
+
+// Default physical height limits (in cm)
+#define DEFAULT_MIN_HEIGHT_CM 62.0
+#define DEFAULT_MAX_HEIGHT_CM 127.0
+
 class DeskProtocol {
 public:
     DeskProtocol();
